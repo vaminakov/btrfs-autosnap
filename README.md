@@ -12,3 +12,4 @@ Feature is one and simple:
 Profit!
 
 P.S. You can install it by [AUR package](https://aur.archlinux.org/packages/btrfs-autosnap/).
+ 
