@@ -9,6 +9,6 @@ Target = *
 Description = Making BTRFS snapshot...
 Depends = btrfs-progs
 When = PreTransaction
-Exec = /usr/bin/bash /etc/sh/snapshot.sh
+Exec = /usr/bin/btrfs-autosnap
 AbortOnFail
 NeedsTargets
