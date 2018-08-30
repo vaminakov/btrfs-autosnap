@@ -21,12 +21,12 @@ done
 if [[ -z "$sub" ]]; then echo -e "\033[1;34mThere are no old snapshots to be deleted!\033[0m"; fi
 }
 snap_make() {
-snap_delete
 new=$(</dev/urandom tr -dc "a-z0-9" | head -c6)
+touch ${subvol}
 btrfs su snapshot ${subvol} ${subvol}-$new &>/dev/null && echo -e "\033[1;32mCreated snapshot ${subvol}-$new!\033[0m" || echo -e "\033[1;31mError while creating snapshot ${subvol}-$new!\033[0m"
 }
 snap_list() {
-find . -maxdepth 1 -type d -name "${subvol}-*" -printf "%f\t%TY-%Tm-%Td %TH:%TM:%.2TS\n"
+find . -maxdepth 1 -type d -name "${subvol}-*" -printf "%f\t%TY-%Tm-%Td %TH:%TM:%.2TS\n" | sort -rk2
 }
 snap_help() {
 echo "Usage: btrfs-autosnap [parameter] (only first parameter will be used!)
@@ -39,10 +39,10 @@ If there are no parameter, btrfs-autosnap will delete old snapshots if necessary
 }
 snap_version() {
 echo "btrfs-autosnap by VVL
-version 1.0.0     30 august 2018"
+version 1.0.1     30 august 2018"
 }
 case "${1}" in
-    -l|--list) prepare && snap_list && clean ;;
+    -l|--list) prepare && snap_delete && snap_list && clean ;;
     -r|--remove-old) prepare && snap_delete && clean ;;
     -h|--help) snap_help ;;
     -v|--version) snap_version ;;
