@@ -3,20 +3,28 @@
 ### Description: 
 This is a written on bash script with Pacman hook which help make btrfs root snapshots fast and simple. If your OS is Archlinux-based, Pacman hook will make snapshots before any change 
 
-**Requires `btrfs-progs`, `util-linux` and `coreutils` to be installed. Also Archlinux-based OS for pacman hook**.
-
-Script will work even if your root is LUKS container.
-
-Current features:
+### Current features:
 * Hook will detect if your root filesystem is btrfs subvolume. If yes, it'll make snapshot of it.
 * Also you can manage snapshots: list and delete old ones. Use -h or --help key.
+* Script will work even if your root is LUKS container.
+### Requirements:
+`btrfs-progs`
+`util-linux`
+`coreutils`
+
+Also Archlinux-based OS for pacman hook.
 ### Installing: 
 ```
-1. Install btrfs-autosnap.sh to /usr/bin/btrfs-autosnap
-2. Install btrfs-autosnap.conf to /etc/btrfs-autosnap.conf
-3. If your OS is Archlinux-based, install 01-btrfs-autosnap.hook to /usr/share/libalpm/hooks/01-btrfs-autosnap.hook
-Profit!
+# git clone https://github.com/vvl-rulez/btrfs-autosnap.git
+# cd btrfs-autosnap/
+# sudo install -Dm644 btrfs-autosnap.conf /etc/btrfs-autosnap.conf
+# sudo install -Dm755 btrfs-autosnap.sh /usr/bin/btrfs-autosnap
 ```
+If your OS is Archlinux-based, you can also install pacman hook:
+```
+# sudo cp 01-btrfs-autosnap.hook /usr/share/libalpm/hooks/01-btrfs-autosnap.hook
+```
+Profit!
 P.S. You can install it by [AUR package](https://aur.archlinux.org/packages/btrfs-autosnap/).
 ### Usage: 
 ```
