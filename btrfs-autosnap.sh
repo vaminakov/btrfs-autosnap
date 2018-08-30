@@ -16,12 +16,12 @@ umount /tmp/subvol &>/dev/null
 snap_delete() {
 for sub in $(find . -maxdepth 1 -type d -name "${subvol}-*" -printf "%T@ %f\n" | sort -nr | tail +$(($old+1)) | cut -d ' ' -f 2)
 do
-btrfs su delete $sub &>/dev/null && echo -e "\033[1;34mDeleted old subvol $sub\033[0m" || echo -e "\033[1;31mError while deleting old subvol $sub!\033[0m"
+btrfs su delete $sub &>/dev/null && echo -e "\033[1;34mDeleted old snapshot $sub\033[0m" || echo -e "\033[1;31mError while deleting old snapshot $sub!\033[0m"
 done
 if [[ -z "$sub" ]]; then echo -e "\033[1;34mThere are no old snapshots to be deleted!\033[0m"; fi
 }
 snap_make() {
-new=$(</dev/urandom tr -dc "a-z0-9" | head -c6)
+new=$(</dev/urandom tr -dc "a-z0-9" 2>/dev/null | head -c6)
 touch ${subvol}
 btrfs su snapshot ${subvol} ${subvol}-$new &>/dev/null && echo -e "\033[1;32mCreated snapshot ${subvol}-$new!\033[0m" || echo -e "\033[1;31mError while creating snapshot ${subvol}-$new!\033[0m"
 }
