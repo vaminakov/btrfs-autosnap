@@ -42,9 +42,9 @@ echo "btrfs-autosnap by VVL
 version 1.0.1     30 august 2018"
 }
 case "${1}" in
-    -l|--list) prepare && snap_delete && snap_list && clean ;;
+    -l|--list) prepare && snap_list && clean ;;
     -r|--remove-old) prepare && snap_delete && clean ;;
     -h|--help) snap_help ;;
     -v|--version) snap_version ;;
-    *) prepare && snap_make && clean ;;
+    *) prepare && snap_delete && snap_make && clean ;;
 esac
