@@ -2,6 +2,7 @@
 ***
 ### Description: 
 This is a written on bash script with Pacman hook which help make btrfs root snapshots fast and simple. If your OS is Archlinux-based, Pacman hook will make snapshots before any change **Requires `btrfs-progs`, `util-linux` and `coreutils` to be installed. Also Archlinux-based OS for pacman hook**
+
 Script will work even if your root is LUKS container.
 
 Current features:
